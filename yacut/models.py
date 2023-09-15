@@ -5,6 +5,8 @@ from datetime import datetime
 from . import db
 
 REQUIRED_FIELDS = ('original', 'short')
+
+
 class URLMap(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     original = db.Column(db.String, nullable=False)
