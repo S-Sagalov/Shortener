@@ -13,8 +13,10 @@
   </head>
 
   <body>
-      {% include "header.html" %}
+    {% include "header.html" %}
+    <main>
       {% block content %}не обращайте внимания, это просто заглушка{% endblock content %}
-      {% include "footer.html" %}
+    </main>
+    {% include "footer.html" %}
   </body>
 </html>

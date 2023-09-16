@@ -1,7 +1,7 @@
-from .models import URLMap
-from settings import POSSIBLE_SYMBOLS, LINK_LENGTH
-
 from random import choices
+
+from settings import POSSIBLE_SYMBOLS, LINK_LENGTH
+from .models import URLMap
 
 
 def create_unique_short_link():

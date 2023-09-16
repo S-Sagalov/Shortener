@@ -1,18 +1,20 @@
-from settings import POSSIBLE_SYMBOLS
-from .models import URLMap
+import re
+
+from settings import SHORT_LINK_REGEXP_PATTERN
 from .error_handlers import InvalidAPIUsage
+from .models import URLMap
 from .utils import create_unique_short_link
 
 
 def custom_id_validator(short_link):
     if not short_link:
         return
-    if len(short_link) > 12:
-        return 'Указано недопустимое имя для короткой ссылки'
-    if any(x not in POSSIBLE_SYMBOLS for x in short_link):
-        return 'Указано недопустимое имя для короткой ссылки'
     if URLMap.query.filter_by(short=short_link).first():
         return f'Имя "{short_link}" уже занято.'
+    regex = re.compile(SHORT_LINK_REGEXP_PATTERN)
+    match = regex.match(short_link)
+    if not match:
+        return 'Указано недопустимое имя для короткой ссылки'
 
 
 def original_link_validator(original_link):
